@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -7,8 +8,16 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Heart, Users, HandHeart, Briefcase, DollarSign, Calendar } from 'lucide-react';
+import VolunteerModal from '@/components/modals/VolunteerModal';
+import PartnerModal from '@/components/modals/PartnerModal';
+import FundraisingModal from '@/components/modals/FundraisingModal';
+import EventModal from '@/components/modals/EventModal';
 
 const GetInvolvedSection = () => {
+  const [volunteerOpen, setVolunteerOpen] = useState(false);
+  const [partnerOpen, setPartnerOpen] = useState(false);
+  const [fundraisingOpen, setFundraisingOpen] = useState(false);
+  const [eventOpen, setEventOpen] = useState(false);
   const opportunities = [
     {
       icon: Users,
@@ -92,7 +101,16 @@ const GetInvolvedSection = () => {
                     ))}
                   </div>
                 </div>
-                <Button variant="subtle" className="w-full">
+                <Button 
+                  variant="subtle" 
+                  className="w-full"
+                  onClick={() => {
+                    if (opportunity.action === 'Apply to Volunteer') setVolunteerOpen(true);
+                    else if (opportunity.action === 'Become a Partner') setPartnerOpen(true);
+                    else if (opportunity.action === 'Join Fundraising') setFundraisingOpen(true);
+                    else if (opportunity.action === 'Organize Events') setEventOpen(true);
+                  }}
+                >
                   {opportunity.action}
                 </Button>
               </CardContent>
@@ -263,6 +281,12 @@ const GetInvolvedSection = () => {
           </div>
         </div>
       </div>
+      
+      {/* Modals */}
+      <VolunteerModal open={volunteerOpen} onOpenChange={setVolunteerOpen} />
+      <PartnerModal open={partnerOpen} onOpenChange={setPartnerOpen} />
+      <FundraisingModal open={fundraisingOpen} onOpenChange={setFundraisingOpen} />
+      <EventModal open={eventOpen} onOpenChange={setEventOpen} />
     </section>
   );
 };

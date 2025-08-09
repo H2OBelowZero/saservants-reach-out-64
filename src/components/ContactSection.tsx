@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -5,8 +6,12 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { MapPin, Mail, Clock, Send } from 'lucide-react';
+import MapModal from '@/components/modals/MapModal';
+import { useToast } from '@/hooks/use-toast';
 
 const ContactSection = () => {
+  const [mapOpen, setMapOpen] = useState(false);
+  const { toast } = useToast();
   return (
     <section id="contact" className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,7 +47,7 @@ const ContactSection = () => {
                   </p>
                 </div>
                 <div className="mt-6">
-                  <Button variant="subtle" className="w-full">
+                  <Button variant="subtle" className="w-full" onClick={() => setMapOpen(true)}>
                     <MapPin className="h-4 w-4 mr-2" />
                     Get Directions
                   </Button>
@@ -62,19 +67,19 @@ const ContactSection = () => {
                   <div>
                     <p className="font-medium text-foreground">General Inquiries</p>
                     <a 
-                      href="mailto:ltlushane56@gmail.com" 
+                      href="mailto:Ifutshane56@gmail.com" 
                       className="text-primary hover:underline"
                     >
-                      ltlushane56@gmail.com
+                      Ifutshane56@gmail.com
                     </a>
                   </div>
                   <div>
                     <p className="font-medium text-foreground">Program Information</p>
                     <a 
-                      href="mailto:ltlushane56@gmail.com" 
+                      href="mailto:Ifutshane56@gmail.com" 
                       className="text-primary hover:underline"
                     >
-                      ltlushane56@gmail.com
+                      Ifutshane56@gmail.com
                     </a>
                   </div>
                 </div>
@@ -121,49 +126,58 @@ const ContactSection = () => {
               </p>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="firstName">First Name</Label>
-                  <Input id="firstName" placeholder="Your first name" />
+              <form onSubmit={(e) => {
+                e.preventDefault();
+                toast({
+                  title: "Message Sent!",
+                  description: "Thank you for reaching out. We'll get back to you soon.",
+                });
+              }}>
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="firstName">First Name</Label>
+                    <Input id="firstName" placeholder="Your first name" required />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="lastName">Last Name</Label>
+                    <Input id="lastName" placeholder="Your last name" required />
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="lastName">Last Name</Label>
-                  <Input id="lastName" placeholder="Your last name" />
+                
+                <div className="space-y-2 mb-6">
+                  <Label htmlFor="email">Email Address</Label>
+                  <Input id="email" type="email" placeholder="your.email@example.com" required />
                 </div>
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="email">Email Address</Label>
-                <Input id="email" type="email" placeholder="your.email@example.com" />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="phone">Phone Number (Optional)</Label>
-                <Input id="phone" type="tel" placeholder="+27 12 345 6789" />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="subject">Subject</Label>
-                <Input id="subject" placeholder="What's your message about?" />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="message">Message</Label>
-                <Textarea 
-                  id="message" 
-                  placeholder="Tell us how we can help you..."
-                  className="min-h-[120px]"
-                />
-              </div>
-              
-              <Button variant="hero" className="w-full">
-                <Send className="h-4 w-4 mr-2" />
-                Send Message
-              </Button>
-              
-              <p className="text-sm text-muted-foreground text-center">
-                By sending this message, you agree to our privacy policy and terms of service.
-              </p>
+                
+                <div className="space-y-2 mb-6">
+                  <Label htmlFor="phone">Phone Number (Optional)</Label>
+                  <Input id="phone" type="tel" placeholder="+27 12 345 6789" />
+                </div>
+                
+                <div className="space-y-2 mb-6">
+                  <Label htmlFor="subject">Subject</Label>
+                  <Input id="subject" placeholder="What's your message about?" required />
+                </div>
+                
+                <div className="space-y-2 mb-6">
+                  <Label htmlFor="message">Message</Label>
+                  <Textarea 
+                    id="message" 
+                    placeholder="Tell us how we can help you..."
+                    className="min-h-[120px]"
+                    required
+                  />
+                </div>
+                
+                <Button type="submit" variant="hero" className="w-full">
+                  <Send className="h-4 w-4 mr-2" />
+                  Send Message
+                </Button>
+                
+                <p className="text-sm text-muted-foreground text-center mt-4">
+                  By sending this message, you agree to our privacy policy and terms of service.
+                </p>
+              </form>
             </CardContent>
           </Card>
         </div>
@@ -186,6 +200,9 @@ const ContactSection = () => {
           </CardContent>
         </Card>
       </div>
+      
+      {/* Map Modal */}
+      <MapModal open={mapOpen} onOpenChange={setMapOpen} />
     </section>
   );
 };

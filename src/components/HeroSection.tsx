@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Users, BookOpen, Heart } from 'lucide-react';
 import heroImage from '@/assets/hero-image.jpg';
@@ -47,16 +48,22 @@ const HeroSection = () => {
 
           {/* Call to Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button variant="hero" size="lg" className="group">
-              Learn About Our Mission
-              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button variant="warm" size="lg">
-              Get Involved Today
-            </Button>
-            <Button variant="subtle" size="lg">
-              View Resources
-            </Button>
+            <Link to="/about">
+              <Button variant="hero" size="lg" className="group">
+                Learn About Our Mission
+                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
+            <Link to="/get-involved">
+              <Button variant="warm" size="lg">
+                Get Involved Today
+              </Button>
+            </Link>
+            <Link to="/resources">
+              <Button variant="subtle" size="lg">
+                View Resources
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

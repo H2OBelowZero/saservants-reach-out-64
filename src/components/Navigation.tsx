@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Heart } from 'lucide-react';
 
@@ -6,12 +7,12 @@ const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'About Us', href: '#about' },
-    { name: 'Programs', href: '#programs' },
-    { name: 'Resources', href: '#resources' },
-    { name: 'Get Involved', href: '#get-involved' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '/' },
+    { name: 'About Us', href: '/about' },
+    { name: 'Programs', href: '/programs' },
+    { name: 'Resources', href: '/resources' },
+    { name: 'Get Involved', href: '/get-involved' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   return (
@@ -19,7 +20,7 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
+          <Link to="/" className="flex items-center space-x-2">
             <div className="p-2 bg-gradient-hero rounded-lg">
               <Heart className="h-6 w-6 text-white" />
             </div>
@@ -27,22 +28,24 @@ const Navigation = () => {
               <h1 className="text-lg font-bold text-primary">SA Servants</h1>
               <p className="text-xs text-muted-foreground">Fighting Teenage Pregnancy</p>
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.href}
+                to={item.href}
                 className="text-foreground hover:text-primary transition-smooth text-sm font-medium"
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
-            <Button variant="warm" size="sm">
-              Donate Now
-            </Button>
+            <Link to="/donate">
+              <Button variant="warm" size="sm">
+                Donate Now
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -62,19 +65,21 @@ const Navigation = () => {
           <div className="md:hidden py-4 border-t border-border bg-background/95">
             <div className="flex flex-col space-y-3">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.href}
                   className="text-foreground hover:text-primary transition-smooth text-sm font-medium px-2 py-1"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
               <div className="pt-2">
-                <Button variant="warm" size="sm" className="w-full">
-                  Donate Now
-                </Button>
+                <Link to="/donate">
+                  <Button variant="warm" size="sm" className="w-full">
+                    Donate Now
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

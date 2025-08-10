@@ -25,7 +25,7 @@ const Navigation = () => {
               <Heart className="h-6 w-6 text-white" />
             </div>
             <div className="hidden sm:block">
-              <h1 className="text-lg font-bold text-primary">SA Servants</h1>
+              <h1 className="text-lg font-bold text-primary">SSFATPF</h1>
               <p className="text-xs text-muted-foreground">Fighting Teenage Pregnancy</p>
             </div>
           </Link>

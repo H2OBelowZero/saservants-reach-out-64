@@ -17,13 +17,13 @@ const Footer = () => {
                   <Heart className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold">SA Servants</h3>
-                  <p className="text-primary-foreground/80 text-sm">Fighting Teenage Pregnancy Foundation</p>
+                  <h3 className="text-xl font-bold">SSFATPF</h3>
+                  <p className="text-primary-foreground/80 text-sm">T.SA Servants Fights Against Teenage Pregnancy Foundation</p>
                 </div>
               </div>
               <p className="text-primary-foreground/90 mb-6 leading-relaxed max-w-md">
-                Dedicated to empowering South African youth through education, support, and 
-                community engagement to prevent teenage pregnancy and build brighter futures.
+                A registered Non-Profit Company fighting teenage pregnancy, educating communities, 
+                and safeguarding children's civil rights across South Africa.
               </p>
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
@@ -105,7 +105,7 @@ const Footer = () => {
         <div className="border-t border-primary-foreground/20 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-sm text-primary-foreground/80">
-              © {currentYear} SA Servants Fights Against Teenage Pregnancy Foundation. All rights reserved.
+              © {currentYear} T.SA Servants Fights Against Teenage Pregnancy Foundation. All rights reserved.
             </div>
             <div className="flex flex-wrap gap-6 text-sm">
               <span className="text-primary-foreground/60">NPO: 320-188 NPO</span>
@@ -115,7 +115,7 @@ const Footer = () => {
           </div>
           <div className="mt-4 text-center">
             <p className="text-xs text-primary-foreground/60">
-              SA Servants is a registered Non-Profit Organization committed to transparency and accountability.
+              SSFATPF is a registered Non-Profit Company with strict governance and asset protection. Constitution adopted 29 March 2025.
             </p>
           </div>
         </div>

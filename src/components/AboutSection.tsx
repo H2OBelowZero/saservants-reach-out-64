@@ -5,9 +5,11 @@ import { Target, Users, Award, MapPin, Mail, Phone } from 'lucide-react';
 
 const AboutSection = () => {
   const legalInfo = [
+    { label: 'Short Name', value: 'SSFATPF' },
     { label: 'NPO Registration', value: '320-188 NPO' },
     { label: 'PBO Number', value: '930086288' },
     { label: 'Tax Number', value: '9659941190' },
+    { label: 'Constitution Adopted', value: '29 March 2025' },
   ];
 
   const achievements = [
@@ -21,27 +23,47 @@ const AboutSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-4">About Our Foundation</Badge>
+          <Badge variant="outline" className="mb-4">About SSFATPF</Badge>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-            Our Mission & Impact
+            T.SA Servants Fights Against Teenage Pregnancy Foundation
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Founded with a vision to empower South African youth, we work tirelessly to prevent 
-            teenage pregnancy through education, support, and community engagement.
+            A legally registered Non-Profit Company dedicated to fighting teenage pregnancy, 
+            educating communities, and safeguarding children's civil rights across South Africa.
           </p>
         </div>
 
-        {/* Mission Statement */}
+        {/* Core Objectives */}
         <Card className="mb-16 shadow-card">
           <CardContent className="p-8">
-            <div className="text-center">
-              <h3 className="text-2xl font-bold text-primary mb-6">Our Mission</h3>
-              <p className="text-lg text-foreground leading-relaxed max-w-4xl mx-auto">
-                To reduce teenage pregnancy rates in South Africa through comprehensive education, 
-                counseling services, community outreach programs, and by empowering young people 
-                with the knowledge and resources they need to make informed decisions about their 
-                reproductive health and future.
-              </p>
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-primary mb-6">Our Core Objectives</h3>
+            </div>
+            <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+              <div className="space-y-4">
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
+                  <p className="text-foreground">Fight teenage pregnancy in South Africa through education and prevention programs</p>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
+                  <p className="text-foreground">Educate fathers and boys on protecting and respecting women and girls</p>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
+                  <p className="text-foreground">Distribute essentials to the poorest children: health toiletries, sanitary towels, school uniforms, and food</p>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
+                  <p className="text-foreground">Safeguard children's civil rights and promote equality regardless of race, gender, or disability</p>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
+                  <p className="text-foreground">Partner with government, private companies, donors, NGOs, schools, churches, and local leaders</p>
+                </div>
+              </div>
             </div>
           </CardContent>
         </Card>
@@ -112,8 +134,9 @@ const AboutSection = () => {
               </div>
               <div className="mt-6 p-4 bg-secondary/50 rounded-lg">
                 <p className="text-sm text-muted-foreground">
-                  SA Servants is a registered Non-Profit Organization and Public Benefit Organization, 
-                  committed to transparency and accountability in all our operations.
+                  SSFATPF exists as a separate legal entity from its members and is committed to 
+                  transparency, accountability, and strict governance. All assets are protected 
+                  and cannot be distributed to members, ensuring funds benefit our mission.
                 </p>
               </div>
             </CardContent>

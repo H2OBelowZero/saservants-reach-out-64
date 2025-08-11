@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { ProgramPreview } from '@/components/ui/program-preview';
 import { Calendar, Users, BookOpen, MessageCircle, School, HandHeart } from 'lucide-react';
 
 const ProgramsSection = () => {
@@ -56,47 +57,67 @@ const ProgramsSection = () => {
 
         {/* Programs Grid */}
         <div className="grid lg:grid-cols-2 gap-8 mb-12">
-          {programs.map((program, index) => (
-            <Card key={index} className="shadow-card hover:shadow-warm transition-smooth group">
-              <CardHeader>
-                <div className="flex items-start justify-between">
-                  <div className="flex items-center space-x-3">
-                    <div className="p-2 bg-gradient-hero rounded-lg group-hover:scale-110 transition-bounce">
-                      <program.icon className="h-6 w-6 text-white" />
-                    </div>
-                    <div>
-                      <CardTitle className="text-xl text-foreground">{program.title}</CardTitle>
-                      <div className="flex items-center space-x-2 mt-2">
-                        <Badge variant="secondary" className="text-xs">
-                          {program.status}
-                        </Badge>
-                        <div className="flex items-center space-x-1 text-muted-foreground">
-                          <Users className="h-3 w-3" />
-                          <span className="text-xs">{program.participants}</span>
+          {programs.map((program, index) => {
+            const getProgramType = (title: string) => {
+              if (title.includes('Educational')) return 'educational';
+              if (title.includes('School')) return 'outreach';
+              if (title.includes('Counseling')) return 'counseling';
+              if (title.includes('Partnership')) return 'partnerships';
+              return 'educational';
+            };
+
+            return (
+              <ProgramPreview
+                key={index}
+                type={getProgramType(program.title)}
+                title={program.title}
+                description={program.description}
+                features={program.features}
+                status={program.status}
+                participants={program.participants}
+              >
+                <Card className="shadow-card hover:shadow-warm transition-smooth group cursor-pointer">
+                  <CardHeader>
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-center space-x-3">
+                        <div className="p-2 bg-gradient-hero rounded-lg group-hover:scale-110 transition-bounce">
+                          <program.icon className="h-6 w-6 text-white" />
+                        </div>
+                        <div>
+                          <CardTitle className="text-xl text-foreground">{program.title}</CardTitle>
+                          <div className="flex items-center space-x-2 mt-2">
+                            <Badge variant="secondary" className="text-xs">
+                              {program.status}
+                            </Badge>
+                            <div className="flex items-center space-x-1 text-muted-foreground">
+                              <Users className="h-3 w-3" />
+                              <span className="text-xs">{program.participants}</span>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <p className="text-muted-foreground mb-4 leading-relaxed">
-                  {program.description}
-                </p>
-                <div className="space-y-2 mb-6">
-                  {program.features.map((feature, featureIndex) => (
-                    <div key={featureIndex} className="flex items-center space-x-2">
-                      <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                      <span className="text-sm text-foreground">{feature}</span>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <p className="text-muted-foreground mb-4 leading-relaxed">
+                      {program.description}
+                    </p>
+                    <div className="space-y-2 mb-6">
+                      {program.features.map((feature, featureIndex) => (
+                        <div key={featureIndex} className="flex items-center space-x-2">
+                          <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                          <span className="text-sm text-foreground">{feature}</span>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-                <Button variant="subtle" className="w-full">
-                  Learn More
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+                    <Button variant="subtle" className="w-full">
+                      Learn More
+                    </Button>
+                  </CardContent>
+                </Card>
+              </ProgramPreview>
+            );
+          })}
         </div>
 
         {/* Call to Action */}

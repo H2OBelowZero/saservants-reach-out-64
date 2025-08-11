@@ -5,22 +5,22 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 transform hover:scale-105 transition-bounce",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-soft hover:shadow-lg",
+        default: "bg-primary text-primary-foreground shadow-soft hover:shadow-lg",
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+          "bg-destructive text-destructive-foreground",
         outline:
-          "border border-input bg-background text-foreground hover:bg-accent hover:text-accent-foreground",
+          "border border-input bg-background text-foreground",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-        hero: "bg-gradient-hero text-white hover:shadow-warm transform hover:scale-105 transition-bounce font-semibold",
-        warm: "bg-gradient-warm text-white hover:shadow-warm transform hover:scale-105 transition-bounce",
-        subtle: "bg-gradient-subtle text-primary border border-primary/20 hover:bg-primary hover:text-primary-foreground transition-smooth",
+          "bg-secondary text-secondary-foreground",
+        ghost: "text-foreground",
+        link: "text-primary underline-offset-4 hover:underline transform-none hover:scale-100",
+        hero: "bg-gradient-hero text-white hover:shadow-warm font-semibold",
+        warm: "bg-gradient-warm text-white hover:shadow-warm",
+        subtle: "bg-gradient-subtle text-primary border border-primary/20 hover:shadow-soft",
       },
       size: {
         default: "h-10 px-4 py-2",

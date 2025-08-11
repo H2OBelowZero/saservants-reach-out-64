@@ -18,7 +18,7 @@ const Footer = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold">SSFATPF</h3>
-                  <p className="text-primary-foreground/80 text-sm">T.SA Servants Fights Against Teenage Pregnancy Foundation</p>
+                  <p className="text-primary-foreground/80 text-sm">SA Servants Fights Against Teenage Pregnancy Foundation</p>
                 </div>
               </div>
               <p className="text-primary-foreground/90 mb-6 leading-relaxed max-w-md">
@@ -105,7 +105,7 @@ const Footer = () => {
         <div className="border-t border-primary-foreground/20 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-sm text-primary-foreground/80">
-              © {currentYear} T.SA Servants Fights Against Teenage Pregnancy Foundation. All rights reserved.
+              © {currentYear} SA Servants Fights Against Teenage Pregnancy Foundation. All rights reserved.
             </div>
             <div className="flex flex-wrap gap-6 text-sm">
               <span className="text-primary-foreground/60">NPO: 320-188 NPO</span>

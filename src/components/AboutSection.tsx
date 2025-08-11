@@ -25,7 +25,7 @@ const AboutSection = () => {
         <div className="text-center mb-16">
           <Badge variant="outline" className="mb-4">About SSFATPF</Badge>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-            T.SA Servants Fights Against Teenage Pregnancy Foundation
+            SA Servants Fights Against Teenage Pregnancy Foundation
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             A legally registered Non-Profit Company dedicated to fighting teenage pregnancy, 

@@ -5,9 +5,25 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Heart, CreditCard, Banknote, Shield, CheckCircle } from 'lucide-react';
+import { Heart, CreditCard, Banknote, Shield, CheckCircle, TrendingUp } from 'lucide-react';
+import { useDonations } from '@/hooks/useDonations';
+import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
 
 const Donate = () => {
+  const { totalDonations, donationCount, isLoading, submitDonation } = useDonations();
+  const { toast } = useToast();
+  const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
+  const [customAmount, setCustomAmount] = useState('');
+  const [donorInfo, setDonorInfo] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: ''
+  });
+  const [paymentMethod, setPaymentMethod] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const donationAmounts = [50, 100, 250, 500, 1000];
   const impactItems = [
     { amount: 50, impact: 'Provides educational materials for 2 students' },
@@ -16,6 +32,68 @@ const Donate = () => {
     { amount: 500, impact: 'Funds a complete school outreach program' },
     { amount: 1000, impact: 'Supports our programs for a full month' },
   ];
+
+  const handleDonationSubmit = async () => {
+    const amount = selectedAmount || parseFloat(customAmount);
+    
+    if (!amount || amount < 10) {
+      toast({
+        title: "Invalid Amount",
+        description: "Please enter a donation amount of at least R10.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (!donorInfo.firstName || !donorInfo.lastName || !donorInfo.email) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (!paymentMethod) {
+      toast({
+        title: "Payment Method Required",
+        description: "Please select a payment method.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    const result = await submitDonation({
+      amount,
+      donor_name: `${donorInfo.firstName} ${donorInfo.lastName}`,
+      donor_email: donorInfo.email,
+      donor_phone: donorInfo.phone || undefined,
+      payment_method: paymentMethod
+    });
+
+    if (result.success) {
+      toast({
+        title: "Thank You!",
+        description: `Your donation of R${amount} has been recorded. You will receive a confirmation email shortly.`,
+      });
+      
+      // Reset form
+      setSelectedAmount(null);
+      setCustomAmount('');
+      setDonorInfo({ firstName: '', lastName: '', email: '', phone: '' });
+      setPaymentMethod('');
+    } else {
+      toast({
+        title: "Donation Failed",
+        description: result.error || "An error occurred while processing your donation.",
+        variant: "destructive"
+      });
+    }
+
+    setIsSubmitting(false);
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -33,6 +111,28 @@ const Donate = () => {
                 Your donation helps us empower South African youth and prevent teenage pregnancy 
                 through education, support, and community programs.
               </p>
+              
+              {/* Donation Stats */}
+              <div className="mt-8 p-6 bg-gradient-hero text-white rounded-lg shadow-warm max-w-2xl mx-auto">
+                <div className="flex items-center justify-center space-x-2 mb-2">
+                  <TrendingUp className="h-5 w-5" />
+                  <h3 className="text-lg font-semibold">Community Impact</h3>
+                </div>
+                {isLoading ? (
+                  <p className="text-white/90">Loading donation data...</p>
+                ) : (
+                  <div className="grid grid-cols-2 gap-4 text-center">
+                    <div>
+                      <p className="text-2xl font-bold">R{totalDonations.toLocaleString()}</p>
+                      <p className="text-white/90 text-sm">Total Raised</p>
+                    </div>
+                    <div>
+                      <p className="text-2xl font-bold">{donationCount}</p>
+                      <p className="text-white/90 text-sm">Generous Donors</p>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
 
             <div className="grid lg:grid-cols-2 gap-12">
@@ -51,67 +151,115 @@ const Donate = () => {
                   {/* Quick Amount Selection */}
                   <div className="space-y-3">
                     <Label>Select Amount (ZAR)</Label>
-                    <div className="grid grid-cols-3 gap-3">
-                      {donationAmounts.map((amount) => (
-                        <Button key={amount} variant="outline" className="h-12">
-                          R{amount}
-                        </Button>
-                      ))}
-                    </div>
+                     <div className="grid grid-cols-3 gap-3">
+                       {donationAmounts.map((amount) => (
+                         <Button 
+                           key={amount} 
+                           variant={selectedAmount === amount ? "default" : "outline"} 
+                           className="h-12"
+                           onClick={() => {
+                             setSelectedAmount(amount);
+                             setCustomAmount('');
+                           }}
+                         >
+                           R{amount}
+                         </Button>
+                       ))}
+                     </div>
                   </div>
 
                   {/* Custom Amount */}
-                  <div className="space-y-2">
-                    <Label htmlFor="customAmount">Custom Amount (ZAR)</Label>
-                    <Input 
-                      id="customAmount" 
-                      type="number" 
-                      placeholder="Enter amount" 
-                      min="10"
-                    />
-                  </div>
+                   <div className="space-y-2">
+                     <Label htmlFor="customAmount">Custom Amount (ZAR)</Label>
+                     <Input 
+                       id="customAmount" 
+                       type="number" 
+                       placeholder="Enter amount" 
+                       min="10"
+                       value={customAmount}
+                       onChange={(e) => {
+                         setCustomAmount(e.target.value);
+                         setSelectedAmount(null);
+                       }}
+                     />
+                   </div>
 
                   {/* Donor Information */}
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="firstName">First Name</Label>
-                      <Input id="firstName" placeholder="Your first name" />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="lastName">Last Name</Label>
-                      <Input id="lastName" placeholder="Your last name" />
-                    </div>
-                  </div>
+                   <div className="grid grid-cols-2 gap-4">
+                     <div className="space-y-2">
+                       <Label htmlFor="firstName">First Name</Label>
+                       <Input 
+                         id="firstName" 
+                         placeholder="Your first name"
+                         value={donorInfo.firstName}
+                         onChange={(e) => setDonorInfo(prev => ({ ...prev, firstName: e.target.value }))}
+                       />
+                     </div>
+                     <div className="space-y-2">
+                       <Label htmlFor="lastName">Last Name</Label>
+                       <Input 
+                         id="lastName" 
+                         placeholder="Your last name"
+                         value={donorInfo.lastName}
+                         onChange={(e) => setDonorInfo(prev => ({ ...prev, lastName: e.target.value }))}
+                       />
+                     </div>
+                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email Address</Label>
-                    <Input id="email" type="email" placeholder="your.email@example.com" />
-                  </div>
+                   <div className="space-y-2">
+                     <Label htmlFor="email">Email Address</Label>
+                     <Input 
+                       id="email" 
+                       type="email" 
+                       placeholder="your.email@example.com"
+                       value={donorInfo.email}
+                       onChange={(e) => setDonorInfo(prev => ({ ...prev, email: e.target.value }))}
+                     />
+                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="phone">Phone Number (Optional)</Label>
-                    <Input id="phone" type="tel" placeholder="+27 12 345 6789" />
-                  </div>
+                   <div className="space-y-2">
+                     <Label htmlFor="phone">Phone Number (Optional)</Label>
+                     <Input 
+                       id="phone" 
+                       type="tel" 
+                       placeholder="+27 12 345 6789"
+                       value={donorInfo.phone}
+                       onChange={(e) => setDonorInfo(prev => ({ ...prev, phone: e.target.value }))}
+                     />
+                   </div>
 
                   {/* Payment Methods */}
-                  <div className="space-y-3">
-                    <Label>Payment Method</Label>
-                    <div className="space-y-2">
-                      <Button variant="outline" className="w-full justify-start">
-                        <CreditCard className="h-4 w-4 mr-2" />
-                        Credit/Debit Card
-                      </Button>
-                      <Button variant="outline" className="w-full justify-start">
-                        <Banknote className="h-4 w-4 mr-2" />
-                        Bank Transfer
-                      </Button>
-                    </div>
-                  </div>
+                   <div className="space-y-3">
+                     <Label>Payment Method</Label>
+                     <div className="space-y-2">
+                       <Button 
+                         variant={paymentMethod === 'card' ? "default" : "outline"} 
+                         className="w-full justify-start"
+                         onClick={() => setPaymentMethod('card')}
+                       >
+                         <CreditCard className="h-4 w-4 mr-2" />
+                         Credit/Debit Card
+                       </Button>
+                       <Button 
+                         variant={paymentMethod === 'transfer' ? "default" : "outline"} 
+                         className="w-full justify-start"
+                         onClick={() => setPaymentMethod('transfer')}
+                       >
+                         <Banknote className="h-4 w-4 mr-2" />
+                         Bank Transfer
+                       </Button>
+                     </div>
+                   </div>
 
-                  <Button variant="hero" className="w-full">
-                    <Heart className="h-4 w-4 mr-2" />
-                    Donate Now
-                  </Button>
+                   <Button 
+                     variant="hero" 
+                     className="w-full" 
+                     onClick={handleDonationSubmit}
+                     disabled={isSubmitting}
+                   >
+                     <Heart className="h-4 w-4 mr-2" />
+                     {isSubmitting ? 'Processing...' : 'Donate Now'}
+                   </Button>
 
                   <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                     <Shield className="h-4 w-4" />

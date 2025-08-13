@@ -132,7 +132,7 @@ const ResourcesSection = () => {
                       ))}
                     </div>
                     <Button variant="subtle" className="w-full">
-                      View All {category.title}
+                      View Details
                     </Button>
                   </CardContent>
                 </Card>

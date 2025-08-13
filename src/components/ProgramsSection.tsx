@@ -111,7 +111,7 @@ const ProgramsSection = () => {
                       ))}
                     </div>
                     <Button variant="subtle" className="w-full">
-                      Learn More
+                      View Details
                     </Button>
                   </CardContent>
                 </Card>

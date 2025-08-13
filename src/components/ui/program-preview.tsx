@@ -1,5 +1,5 @@
 import * as React from "react"
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Badge } from "@/components/ui/badge"
 import { BookOpen, School, MessageCircle, HandHeart, Users } from 'lucide-react'
 
@@ -40,27 +40,27 @@ export function ProgramPreview({
   const Icon = getIcon()
 
   return (
-    <HoverCard>
-      <HoverCardTrigger asChild>
+    <Dialog>
+      <DialogTrigger asChild>
         {children}
-      </HoverCardTrigger>
-      <HoverCardContent className="w-80" side="top">
-        <div className="space-y-3">
-          <div className="flex items-start space-x-3">
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle className="flex items-center space-x-3">
             <div className="p-2 bg-gradient-hero rounded-lg">
               <Icon className="h-5 w-5 text-white" />
             </div>
-            <div className="flex-1">
-              <h4 className="font-semibold text-foreground">{title}</h4>
-              <div className="flex items-center space-x-2 mt-1">
-                <Badge variant="secondary" className="text-xs">
-                  {status}
-                </Badge>
-                <div className="flex items-center space-x-1 text-muted-foreground">
-                  <Users className="h-3 w-3" />
-                  <span className="text-xs">{participants}</span>
-                </div>
-              </div>
+            <span>{title}</span>
+          </DialogTitle>
+        </DialogHeader>
+        <div className="space-y-4">
+          <div className="flex items-center space-x-2">
+            <Badge variant="secondary" className="text-xs">
+              {status}
+            </Badge>
+            <div className="flex items-center space-x-1 text-muted-foreground">
+              <Users className="h-3 w-3" />
+              <span className="text-xs">{participants}</span>
             </div>
           </div>
           
@@ -76,13 +76,13 @@ export function ProgramPreview({
               {features.map((feature, index) => (
                 <div key={index} className="flex items-center space-x-2">
                   <div className="w-1 h-1 bg-primary rounded-full"></div>
-                  <span className="text-xs text-foreground">{feature}</span>
+                  <span className="text-sm text-foreground">{feature}</span>
                 </div>
               ))}
             </div>
           </div>
         </div>
-      </HoverCardContent>
-    </HoverCard>
+      </DialogContent>
+    </Dialog>
   )
 }

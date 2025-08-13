@@ -13,19 +13,21 @@ export const useDonations = () => {
   const fetchDonationStats = async () => {
     try {
       const { data, error } = await supabase
-        .from('donations')
-        .select('amount')
+        .rpc('get_donation_stats')
       
       if (error) {
-        console.error('Error fetching donations:', error)
+        console.error('Error fetching donation stats:', error)
         return
       }
 
-      const total = data?.reduce((sum, donation) => sum + donation.amount, 0) || 0
-      const count = data?.length || 0
-
-      setTotalDonations(total)
-      setDonationCount(count)
+      if (data && data.length > 0) {
+        const stats = data[0]
+        setTotalDonations(Number(stats.total_donations) || 0)
+        setDonationCount(Number(stats.donation_count) || 0)
+      } else {
+        setTotalDonations(0)
+        setDonationCount(0)
+      }
     } catch (error) {
       console.error('Error fetching donation stats:', error)
     } finally {

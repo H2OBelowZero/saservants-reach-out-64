@@ -70,9 +70,22 @@ const Footer = () => {
             {/* Support */}
             <div>
               <h4 className="text-lg font-semibold mb-4">Support Our Work</h4>
-              <p className="text-primary-foreground/80 text-sm mb-4">
-                Help us continue making a difference in young people's lives.
-              </p>
+              <div className="bg-accent/20 rounded-lg p-4 mb-4">
+                <p className="text-primary-foreground text-sm font-semibold mb-2">
+                  Tax-Deductible Donations
+                </p>
+                <p className="text-primary-foreground/80 text-xs">
+                  Section 18A certificates available
+                </p>
+              </div>
+              <div className="mb-4">
+                <p className="text-primary-foreground/90 text-sm font-medium mb-2">
+                  24/7 Helpline: 082 351 8288
+                </p>
+                <p className="text-primary-foreground/80 text-sm">
+                  Tax-deductible investment in South Africa's future.
+                </p>
+              </div>
               <div className="space-y-3">
                 <Button variant="warm" className="w-full">
                   Donate Now
@@ -108,14 +121,17 @@ const Footer = () => {
               © {currentYear} SA Servants Fights Against Teenage Pregnancy Foundation. All rights reserved.
             </div>
             <div className="flex flex-wrap gap-6 text-sm">
-              <span className="text-primary-foreground/60">NPO: 320-188 NPO</span>
-              <span className="text-primary-foreground/60">PBO: 930086288</span>
-              <span className="text-primary-foreground/60">Tax: 9659941190</span>
+              <span className="text-primary-foreground/80 font-medium">NPO 320-188</span>
+              <span className="text-primary-foreground/80 font-medium">PBO 930086288</span>
+              <span className="text-primary-foreground/80 font-medium">Tax 9659941190</span>
             </div>
           </div>
           <div className="mt-4 text-center">
             <p className="text-xs text-primary-foreground/60">
               SSFATPF is a registered Non-Profit Company with strict governance and asset protection. Constitution adopted 29 March 2025.
+            </p>
+            <p className="text-xs text-primary-foreground/60 mt-1">
+              Tax-deductible donations available under Section 18A of the Income Tax Act.
             </p>
           </div>
         </div>

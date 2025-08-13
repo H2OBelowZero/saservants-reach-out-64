@@ -19,30 +19,35 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="max-w-3xl">
+          <div className="mb-4 px-4 py-2 bg-red-600/90 rounded-lg inline-block">
+            <p className="text-white font-semibold text-sm">
+              URGENT: On New Year's Day 2025, a 12-year-old became a mother in South Africa.
+            </p>
+          </div>
+          
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            Empowering South African{' '}
-            <span className="text-accent">Youth</span> for a{' '}
-            <span className="text-accent">Brighter Future</span>
+            Help us change{' '}
+            <span className="text-accent">this story</span>
           </h1>
           
           <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
-            SA Servants Fights Against Teenage Pregnancy Foundation is dedicated to educating, 
-            supporting, and empowering young people to make informed decisions about their future.
+            SA Servants Fights Against Teenage Pregnancy Foundation prevents the next 12-year-old mother 
+            through community-driven education and support programs.
           </p>
 
-          {/* Quick Stats */}
+          {/* Critical Stats */}
           <div className="flex flex-wrap gap-6 mb-8">
             <div className="flex items-center space-x-2 text-white/90">
               <Users className="h-5 w-5 text-accent" />
-              <span className="text-sm font-medium">500+ Youth Empowered</span>
+              <span className="text-sm font-medium">1,448 births on New Year's Day 2025</span>
             </div>
             <div className="flex items-center space-x-2 text-white/90">
               <BookOpen className="h-5 w-5 text-accent" />
-              <span className="text-sm font-medium">50+ Programs Delivered</span>
+              <span className="text-sm font-medium">80+ teenage mothers in one day</span>
             </div>
             <div className="flex items-center space-x-2 text-white/90">
               <Heart className="h-5 w-5 text-accent" />
-              <span className="text-sm font-medium">Community Impact</span>
+              <span className="text-sm font-medium">Youngest mother: 12 years old</span>
             </div>
           </div>
 

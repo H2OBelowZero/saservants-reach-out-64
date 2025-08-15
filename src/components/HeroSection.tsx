@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Users, BookOpen, Heart } from 'lucide-react';
 import heroImage from '@/assets/hero-image.jpg';
+import StatsDisplay from '@/components/StatsDisplay';
 
 const HeroSection = () => {
   return (
@@ -69,6 +70,11 @@ const HeroSection = () => {
                 View Resources
               </Button>
             </Link>
+          </div>
+
+          {/* Dynamic Stats */}
+          <div className="mt-12">
+            <StatsDisplay />
           </div>
         </div>
       </div>

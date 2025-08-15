@@ -7,7 +7,7 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instanciate createClient with right options
+  // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
     PostgrestVersion: "13.0.4"
@@ -44,6 +44,48 @@ export type Database = {
         }
         Relationships: []
       }
+      events: {
+        Row: {
+          attendees: number | null
+          created_at: string
+          description: string | null
+          event_date: string
+          event_type: string
+          id: string
+          location: string | null
+          outcomes: string | null
+          people_reached: number | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          attendees?: number | null
+          created_at?: string
+          description?: string | null
+          event_date: string
+          event_type: string
+          id?: string
+          location?: string | null
+          outcomes?: string | null
+          people_reached?: number | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          attendees?: number | null
+          created_at?: string
+          description?: string | null
+          event_date?: string
+          event_type?: string
+          id?: string
+          location?: string | null
+          outcomes?: string | null
+          people_reached?: number | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -52,8 +94,17 @@ export type Database = {
       get_donation_stats: {
         Args: Record<PropertyKey, never>
         Returns: {
-          total_donations: number
           donation_count: number
+          total_donations: number
+        }[]
+      }
+      get_event_stats: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          latest_event_date: string
+          total_attendees: number
+          total_events: number
+          total_people_reached: number
         }[]
       }
     }

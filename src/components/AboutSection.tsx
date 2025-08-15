@@ -13,9 +13,9 @@ const AboutSection = () => {
   ];
 
   const achievements = [
-    { icon: Users, title: '500+ Youth Reached', description: 'Directly impacted through our programs' },
-    { icon: Award, title: '5+ Years Experience', description: 'Dedicated service to communities' },
-    { icon: Target, title: '15+ Schools', description: 'Partnership programs across Tshwane' },
+    { icon: Users, title: '125+ Youth Reached', description: 'Directly impacted through our programs' },
+    { icon: Award, title: '1+ Years Experience', description: 'Dedicated service to communities since 2025' },
+    { icon: Target, title: '8+ Schools', description: 'Partnership programs across Tshwane' },
   ];
 
   return (

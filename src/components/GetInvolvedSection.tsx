@@ -257,15 +257,15 @@ const GetInvolvedSection = () => {
                 <h3 className="text-xl font-bold mb-4 text-center">Your Impact Matters</h3>
                 <div className="grid grid-cols-2 gap-4 text-center">
                   <div>
-                    <div className="text-2xl font-bold">500+</div>
+                    <div className="text-2xl font-bold">125+</div>
                     <div className="text-white/80 text-sm">Youth Reached</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold">50+</div>
+                    <div className="text-2xl font-bold">25+</div>
                     <div className="text-white/80 text-sm">Active Volunteers</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold">15+</div>
+                    <div className="text-2xl font-bold">8+</div>
                     <div className="text-white/80 text-sm">School Partners</div>
                   </div>
                   <div>

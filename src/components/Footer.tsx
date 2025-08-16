@@ -126,13 +126,26 @@ const Footer = () => {
               <span className="text-primary-foreground/80 font-medium">Tax 9659941190</span>
             </div>
           </div>
-          <div className="mt-4 text-center">
-            <p className="text-xs text-primary-foreground/60">
-              SSFATPF is a registered Non-Profit Company with strict governance and asset protection. Constitution adopted 29 March 2025.
-            </p>
-            <p className="text-xs text-primary-foreground/60 mt-1">
-              Tax-deductible donations available under Section 18A of the Income Tax Act.
-            </p>
+          <div className="mt-4 space-y-2">
+            <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
+              <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm">
+                <a href="/privacy-policy" className="text-primary-foreground/80 hover:text-accent transition-colors">
+                  Privacy Policy
+                </a>
+                <a href="/terms-of-service" className="text-primary-foreground/80 hover:text-accent transition-colors">
+                  Terms of Service
+                </a>
+                <span className="text-primary-foreground/60">POPIA Compliant</span>
+              </div>
+            </div>
+            <div className="text-center">
+              <p className="text-xs text-primary-foreground/60">
+                SSFATPF is a registered Non-Profit Company with strict governance and asset protection. Constitution adopted 29 March 2025.
+              </p>
+              <p className="text-xs text-primary-foreground/60 mt-1">
+                Tax-deductible donations available under Section 18A of the Income Tax Act.
+              </p>
+            </div>
           </div>
         </div>
       </div>

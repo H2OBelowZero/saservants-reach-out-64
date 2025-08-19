@@ -4,13 +4,16 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { CalendarDays, MapPin, Users, Target, Plus } from 'lucide-react';
+import { CalendarDays, MapPin, Users, Target, Plus, PenTool } from 'lucide-react';
 import PostEventModal from '@/components/modals/PostEventModal';
+import BlogPostModal from '@/components/modals/BlogPostModal';
 import { useEvents } from '@/hooks/useEvents';
 import { format } from 'date-fns';
 
 const Events = () => {
   const [isPostModalOpen, setIsPostModalOpen] = useState(false);
+  const [isBlogModalOpen, setIsBlogModalOpen] = useState(false);
+  const [selectedEventForBlog, setSelectedEventForBlog] = useState<{id: string, title: string} | null>(null);
   const { events, eventStats, isLoading } = useEvents();
 
   const getEventTypeColor = (type: string) => {
@@ -136,6 +139,21 @@ const Events = () => {
                         <p className="text-sm text-muted-foreground">{event.outcomes}</p>
                       </div>
                     )}
+                    
+                    <div className="mt-4 pt-4 border-t border-border">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          setSelectedEventForBlog({id: event.id, title: event.title});
+                          setIsBlogModalOpen(true);
+                        }}
+                        className="w-full sm:w-auto"
+                      >
+                        <PenTool className="w-4 h-4 mr-2" />
+                        Write Blog Post About This Event
+                      </Button>
+                    </div>
                   </CardContent>
                 </Card>
               ))}
@@ -149,6 +167,16 @@ const Events = () => {
       <PostEventModal 
         open={isPostModalOpen} 
         onOpenChange={setIsPostModalOpen} 
+      />
+      
+      <BlogPostModal
+        open={isBlogModalOpen}
+        onOpenChange={(open) => {
+          setIsBlogModalOpen(open);
+          if (!open) setSelectedEventForBlog(null);
+        }}
+        relatedEventId={selectedEventForBlog?.id}
+        relatedEventTitle={selectedEventForBlog?.title}
       />
     </div>
   );

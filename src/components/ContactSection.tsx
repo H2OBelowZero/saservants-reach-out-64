@@ -67,19 +67,19 @@ const ContactSection = () => {
                   <div>
                     <p className="font-medium text-foreground">General Inquiries</p>
                     <a 
-                      href="mailto:Ifutshane56@gmail.com" 
+                      href="mailto:ssfatpfoundation@gmail.com" 
                       className="text-primary hover:underline"
                     >
-                      Ifutshane56@gmail.com
+                      ssfatpfoundation@gmail.com
                     </a>
                   </div>
                   <div>
                     <p className="font-medium text-foreground">Program Information</p>
                     <a 
-                      href="mailto:Ifutshane56@gmail.com" 
+                      href="mailto:ssfatpfoundation@gmail.com" 
                       className="text-primary hover:underline"
                     >
-                      Ifutshane56@gmail.com
+                      ssfatpfoundation@gmail.com
                     </a>
                   </div>
                 </div>

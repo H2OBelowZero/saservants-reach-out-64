@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Heart } from 'lucide-react';
+import { Menu, X, Heart, Search } from 'lucide-react';
+import SearchDialog from './SearchDialog';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -44,6 +45,11 @@ const Navigation = () => {
                 {item.name}
               </Link>
             ))}
+            <SearchDialog>
+              <Button variant="ghost" size="icon">
+                <Search className="h-4 w-4" />
+              </Button>
+            </SearchDialog>
             <Link to="/donate">
               <Button variant="warm" size="sm">
                 Donate Now
@@ -77,7 +83,13 @@ const Navigation = () => {
                   {item.name}
                 </Link>
               ))}
-              <div className="pt-2">
+              <div className="pt-2 space-y-2">
+                <SearchDialog>
+                  <Button variant="ghost" className="w-full justify-start">
+                    <Search className="h-4 w-4 mr-2" />
+                    Search
+                  </Button>
+                </SearchDialog>
                 <Link to="/donate">
                   <Button variant="warm" size="sm" className="w-full">
                     Donate Now

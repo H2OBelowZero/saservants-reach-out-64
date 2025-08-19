@@ -6,10 +6,13 @@ import ResourcesSection from '@/components/ResourcesSection';
 import GetInvolvedSection from '@/components/GetInvolvedSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import EmergencyBanner from '@/components/EmergencyBanner';
+import FloatingHelpline from '@/components/FloatingHelpline';
 
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <EmergencyBanner />
       <Navigation />
       <HeroSection />
       <AboutSection />
@@ -18,6 +21,7 @@ const Index = () => {
       <GetInvolvedSection />
       <ContactSection />
       <Footer />
+      <FloatingHelpline />
     </div>
   );
 };

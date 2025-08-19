@@ -108,7 +108,7 @@ const AboutSection = () => {
                   <Mail className="h-5 w-5 text-primary" />
                   <div>
                     <p className="font-medium text-foreground">Email</p>
-                    <p className="text-muted-foreground">Ifutshane56@gmail.com</p>
+                    <p className="text-muted-foreground">ssfatpfoundation@gmail.com</p>
                   </div>
                 </div>
               </div>

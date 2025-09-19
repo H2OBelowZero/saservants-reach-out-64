@@ -50,6 +50,11 @@ const Navigation = () => {
                 <Search className="h-4 w-4" />
               </Button>
             </SearchDialog>
+            <Link to="/login">
+              <Button variant="outline" size="sm">
+                Login
+              </Button>
+            </Link>
             <Link to="/donate">
               <Button variant="warm" size="sm">
                 Donate Now
@@ -90,6 +95,11 @@ const Navigation = () => {
                     Search
                   </Button>
                 </SearchDialog>
+                <Link to="/login">
+                  <Button variant="outline" size="sm" className="w-full">
+                    Login
+                  </Button>
+                </Link>
                 <Link to="/donate">
                   <Button variant="warm" size="sm" className="w-full">
                     Donate Now

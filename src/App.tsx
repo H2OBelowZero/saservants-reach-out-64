@@ -16,6 +16,8 @@ import Reports from "./pages/Reports";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import NotFound from "./pages/NotFound";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import LoginForm from "./components/auth/LoginForm";
 import SignupForm from "./components/auth/SignupForm";
 import AdminDashboard from "./components/admin/AdminDashboard";
@@ -41,6 +43,8 @@ const App = () => (
           <Route path="/reports" element={<Reports />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/auth/login" element={<LoginForm />} />
           <Route path="/auth/signup" element={<SignupForm />} />
           <Route path="/admin" element={<AdminDashboard />} />

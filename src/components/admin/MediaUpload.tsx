@@ -36,8 +36,9 @@ const MediaUpload = () => {
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const validFiles = acceptedFiles.filter(file => {
-      const isImage = file.type.startsWith('image/');
-      const isVideo = file.type.startsWith('video/');
+      const fileType = file.type || '';
+      const isImage = fileType.startsWith('image/');
+      const isVideo = fileType.startsWith('video/');
       const isValidSize = isImage ? file.size <= 10 * 1024 * 1024 : file.size <= 100 * 1024 * 1024;
       
       if (!isImage && !isVideo) {
@@ -240,7 +241,7 @@ const MediaUpload = () => {
                 {files.map((file) => (
                   <div key={file.id} className="relative group">
                     <div className="aspect-square rounded-lg overflow-hidden border">
-                      {file.type.startsWith('image/') ? (
+                      {(file.type || '').startsWith('image/') ? (
                         <img
                           src={file.preview}
                           alt={file.name}
